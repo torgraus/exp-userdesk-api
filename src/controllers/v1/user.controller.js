@@ -3,6 +3,7 @@ import User from "../../models/user.model.js";
 import hashPassword from "../../utils/hashPassword.js";
 import generateToken from "../../utils/generateToken.js";
 import validatePassword from "../../utils/validatePassword.js";
+import mongoose from "mongoose";
 
 // @desc    Get current user
 // @route   GET /api/v1/users/me
@@ -105,4 +106,62 @@ const loginUser = asyncHandler(async (req, res) => {
   });
 });
 
-export { getMe, createUser, loginUser };
+// @desc    Update a user
+// @route   PATCH /api/v1/users/:id
+// @access  Private
+const updateUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const {
+    fullName,
+    email,
+    password,
+    phone,
+    address,
+    bio,
+    avatarUrl,
+    birthDate,
+  } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(400);
+    throw new Error("Invalid ID");
+  }
+
+  if (req.user._id.toString() !== id.toString()) {
+    res.status(403);
+    throw new Error("Not authorized to update this user");
+  }
+
+  const updateData = {};
+
+  if (fullName) updateData.fullName = fullName;
+  if (email) updateData.email = email.trim().toLowerCase();
+  if (password) {
+    // Encrypt password
+    const hashedPassword = await hashPassword(password);
+    updateData.password = hashedPassword;
+  }
+  if (phone) updateData.phone = phone;
+  if (address) updateData.address = address;
+  if (bio) updateData.bio = bio;
+  if (avatarUrl) updateData.avatarUrl = avatarUrl;
+  if (birthDate) updateData.birthDate = birthDate;
+
+  const updatedUser = await User.findByIdAndUpdate(id, updateData, {
+    new: true,
+    runValidators: true,
+  }).select("-password");
+
+  if (!updatedUser) {
+    res.status(400);
+    throw new Error("User unsuccessfully updated");
+  }
+
+  res.status(200).json({
+    successful: true,
+    message: "User successfully updated",
+    data: updatedUser,
+  });
+});
+
+export { getMe, createUser, loginUser, updateUser };
