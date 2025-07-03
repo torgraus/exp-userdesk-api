@@ -1,20 +1,23 @@
 import express from "express";
 import morgan from "morgan";
+import cors from "cors";
 import userRoutesV1 from "./routes/v1/user.route.js";
 import authRoutesV1 from "./routes/v1/auth.route.js";
 import errorHandler from "./middlewares/error.middleware.js";
 import connDB from "./config/db.js";
 
-// Connect database
-// connDB();
+connDB();
 
 const app = express();
 const NODE_ENV = process.env.NODE_ENV || "development";
 
 // Global middlewares
+app.use(cors());
+
 if (NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
 app.use(express.json());
 
 // Routes middlewares
