@@ -6,7 +6,7 @@ import errorHandler from "./middlewares/error.middleware.js";
 import connDB from "./config/db.js";
 
 // Connect database
-connDB();
+// connDB();
 
 const app = express();
 const NODE_ENV = process.env.NODE_ENV || "development";

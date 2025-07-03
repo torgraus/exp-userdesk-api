@@ -164,4 +164,32 @@ const updateUser = asyncHandler(async (req, res) => {
   });
 });
 
-export { getMe, createUser, loginUser, updateUser };
+// @desc    Delete a user
+// @route   DELETE /api/v1/users/:id
+// @access  Private
+const deleteUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(400);
+    throw new Error("Invalid ID");
+  }
+
+  if (req.user._id != id.toString()) {
+    res.status(403);
+    throw new Error("Not authorized to delete user");
+  }
+
+  const deletedUser = await User.findByIdAndDelete(id);
+
+  if (!deletedUser) {
+    res.status(400);
+    throw new Error("User unsuccessfully deleted");
+  }
+
+  res
+    .status(200)
+    .json({ successful: true, message: "User successfully deleted" });
+});
+
+export { getMe, createUser, loginUser, updateUser, deleteUser };
