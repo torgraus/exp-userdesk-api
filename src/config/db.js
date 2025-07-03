@@ -1,12 +1,12 @@
-import mongoose from 'mongoose';
-import colors from 'colors';
+import mongoose from "mongoose";
+import colors from "colors";
 
 const connDB = async () => {
   try {
     const MONGO_URI = process.env.MONGO_URI;
 
     if (!MONGO_URI) {
-      console.error('MONGO_URI not found in environment'.red.bold);
+      console.error("MONGO_URI not found in environment".red.bold);
       process.exit(1);
     }
 

@@ -1,6 +1,6 @@
-import app from './src/app.js';
+import app from "./src/app.js";
 
-const NODE_ENV = process.env.NODE_ENV || 'development';
+const NODE_ENV = process.env.NODE_ENV || "development";
 const PORT = process.env.PORT || 3000;
 
 // Start server

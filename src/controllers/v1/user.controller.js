@@ -1,8 +1,8 @@
-import asyncHandler from 'express-async-handler';
-import User from '../../models/user.model.js';
-import hashPassword from '../../utils/hashPassword.js';
-import generateToken from '../../utils/generateToken.js';
-import validatePassword from '../../utils/validatePassword.js';
+import asyncHandler from "express-async-handler";
+import User from "../../models/user.model.js";
+import hashPassword from "../../utils/hashPassword.js";
+import generateToken from "../../utils/generateToken.js";
+import validatePassword from "../../utils/validatePassword.js";
 
 // @desc    Get current user
 // @route   GET /api/v1/users/me
@@ -12,7 +12,7 @@ const getMe = asyncHandler(async (req, res) => {
 
   res.status(200).json({
     successful: true,
-    message: 'User successfully fetched',
+    message: "User successfully fetched",
     data: user,
   });
 });
@@ -25,7 +25,7 @@ const createUser = asyncHandler(async (req, res) => {
 
   if (!fullName || !email || !password) {
     res.status(400);
-    throw new Error('Full name, email and password are required');
+    throw new Error("Full name, email and password are required");
   }
 
   const normalizedEmail = email.trim().toLowerCase();
@@ -34,7 +34,7 @@ const createUser = asyncHandler(async (req, res) => {
 
   if (existingUser) {
     res.status(400);
-    throw new Error('Email already registered');
+    throw new Error("Email already registered");
   }
 
   // Encrypt password
@@ -48,7 +48,7 @@ const createUser = asyncHandler(async (req, res) => {
 
   if (!createdUser) {
     res.status(400);
-    throw new Error('User unsuccessfully created');
+    throw new Error("User unsuccessfully created");
   }
 
   const { password: _, ...userData } = createdUser.toObject();
@@ -58,7 +58,7 @@ const createUser = asyncHandler(async (req, res) => {
 
   res.status(201).json({
     successful: true,
-    message: 'User successfully created',
+    message: "User successfully created",
     token,
     userData,
   });
@@ -72,7 +72,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!email || !password) {
     res.status(400);
-    throw new Error('Email and password are required');
+    throw new Error("Email and password are required");
   }
 
   const normalizedEmail = email.trim().toLowerCase();
@@ -81,7 +81,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error("User not found");
   }
 
   // Verify password
@@ -89,7 +89,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!isValidPassword) {
     res.status(403);
-    throw new Error('Invalid credentials');
+    throw new Error("Invalid credentials");
   }
 
   const { password: _, ...userData } = user.toObject();
@@ -99,7 +99,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   res.status(200).json({
     successful: true,
-    message: 'User successfully logged in',
+    message: "User successfully logged in",
     token,
     data: userData,
   });
