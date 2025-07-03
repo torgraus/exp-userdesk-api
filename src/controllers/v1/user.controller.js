@@ -187,9 +187,15 @@ const deleteUser = asyncHandler(async (req, res) => {
     throw new Error("User unsuccessfully deleted");
   }
 
-  res
-    .status(200)
-    .json({ successful: true, message: "User successfully deleted" });
+  res.status(200).json({
+    successful: true,
+    message: "User successfully deleted",
+    data: {
+      id: deletedUser._id,
+      fullName: deletedUser.fullName,
+      email: deletedUser.email,
+    },
+  });
 });
 
 export { getMe, createUser, loginUser, updateUser, deleteUser };
