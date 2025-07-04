@@ -21,8 +21,6 @@
 - [Author](#author)
 - [License](#license)
 
----
-
 ## ✨ Features
 
 - User Registration and Authentication (JWT-based)
@@ -34,8 +32,6 @@
 - Versioned API Routing
 - CORS support for frontend interaction
 
----
-
 ## 🛠️ Tech Stack
 
 | Category       | Tools/Packages                      |
@@ -46,8 +42,6 @@
 | Utilities      | express-async-handler, morgan, cors |
 | Styling Logs   | colors                              |
 | Env Handling   | Node.js                             |
-
----
 
 ## 🧾 Project Structure
 
@@ -72,8 +66,6 @@ exp-userdesk-api/
 │   │   └── v1/          # Versioned routes (e.g., user.route.js, auth.route.js)
 │   └── utils/           # Utility functions (e.g., hashPassword, generateToken)
 ```
-
----
 
 ## 🚀 Getting Started
 
@@ -115,8 +107,6 @@ For production
 npm start
 ```
 
----
-
 ## 📮 API Endpoints
 
 > All routes are prefixed with `api/v1`
@@ -127,8 +117,6 @@ npm start
 | ------ | ---------------------- | ------------------- |
 | POST   | `/auth/users/register` | Register a new user |
 | POST   | `/auth/users/login`    | Log in a user       |
-
----
 
 ### 👤 User Routes
 
@@ -147,8 +135,6 @@ npm start
 - ✅ Secure password storage
 - ✅ Environment-specific logging
 
----
-
 ## 📌 Status
 
 This is a **work-in-progress project**, built incrementally with **Express.js** and other **Node.js** libraries.
@@ -166,15 +152,11 @@ This is a **work-in-progress project**, built incrementally with **Express.js** 
 - Swagger/OpenAPI docs
 - Unit/integration tests
 
----
-
 ## 👨‍💻 Author
 
 **Henry Amponsah**  
 Computer Science Student | Backend & ML Enthusiast  
 GitHub: [@torgraus](https://github.com/torgraus)
-
----
 
 ## 📄 License
 
