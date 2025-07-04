@@ -1,7 +1,5 @@
 # UserDesk API
 
----
-
 **UserDesk API** is a **RESTful backend service** built with **Express.js** and **MongoDB** that provides **user authentication** and **profile management functionality**. It is designed as the **backend** for a **user profile application** and supports **versioned routing** for future scalability.
 
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-brightgreen)](https://nodejs.org/)
