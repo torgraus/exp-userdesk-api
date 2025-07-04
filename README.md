@@ -49,6 +49,8 @@
 | Styling Logs   | colors                              |
 | Env Handling   | Node.js                             |
 
+---
+
 ## 🧾 Project Structure
 
 ```
