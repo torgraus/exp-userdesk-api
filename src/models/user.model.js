@@ -1,21 +1,21 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema(
   {
     fullName: {
       type: String,
-      required: [true, "Please full name is required."],
+      required: [true, 'Please full name is required.'],
       trim: true,
     },
     email: {
       type: String,
-      required: [true, "Please email is required."],
+      required: [true, 'Please email is required.'],
       unique: true,
       trim: true,
     },
     password: {
       type: String,
-      required: [true, "Please password is required."],
+      required: [true, 'Please password is required.'],
       trim: true,
     },
     phone: String,
@@ -24,8 +24,8 @@ const userSchema = new mongoose.Schema(
     avatarUrl: String,
     role: {
       type: String,
-      enum: ["user", "admin"],
-      default: "user",
+      enum: ['user', 'admin'],
+      default: 'user',
     },
     isVerified: {
       type: Boolean,
@@ -36,6 +36,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
 export default User;
